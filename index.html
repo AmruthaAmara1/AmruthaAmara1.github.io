@@ -1,5 +1,75 @@
 <html lang="en-US">
 <head>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+
+  <script type="module">
+    // Import necessary Firebase services
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+  
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDhYP8tC1ITdcaCKwUerBAvdI0fFcjxbAA",
+      authDomain: "portfolio-a7b7b.firebaseapp.com",
+      projectId: "portfolio-a7b7b",
+      storageBucket: "portfolio-a7b7b.appspot.com",
+      messagingSenderId: "1078429384448",
+      appId: "1:1078429384448:web:1da9db5ac03bfa5c4bbde5"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+  
+    // Reference to the Firestore document
+    const clickCountRef = doc(db, "Portfolio clicks", "clickCount");
+  
+    // Function to increment the click count on page load
+    async function incrementPageVisitCount() {
+      try {
+        const docSnap = await getDoc(clickCountRef);
+        if (docSnap.exists()) {
+          // Get the current count from Firestore
+          let currentCount = docSnap.data().count;
+  
+          // Increment the count by 1
+          currentCount++;
+  
+          // Update the Firestore document with the new count
+          await updateDoc(clickCountRef, { count: currentCount });
+        } else {
+          // If the document doesn't exist, create it with count = 1
+          await setDoc(clickCountRef, { count: 1 });
+        }
+        // Display the updated count
+        displayClickCount();
+      } catch (error) {
+        console.error("Error updating document: ", error);
+      }
+    }
+  
+    // Function to display the click count
+    async function displayClickCount() {
+      try {
+        const docSnap = await getDoc(clickCountRef);
+        if (docSnap.exists()) {
+          const count = docSnap.data().count;
+          // Update the displayed click count on the page
+          document.getElementById("clickCountDisplay").innerText = count;
+        }
+      } catch (error) {
+        console.error("Error getting document: ", error);
+      }
+    }
+  
+    // Call incrementPageVisitCount when the page is loaded
+    window.onload = () => {
+      incrementPageVisitCount();
+    };
+  </script>  
+
   <!-- Google Tag Manager -->
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -9,6 +79,7 @@
   })(window,document,'script','dataLayer','GTM-5BB8W2X');
   </script>
   <!-- End Google Tag Manager -->
+
   <link href="/favicon.png" rel="icon" type="image/png"/>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -17,8 +88,10 @@
   </title>
   <meta content="" name="description"/>
   <meta content="" name="keywords"/>
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"/>
+
   <!-- Vendor CSS Files -->
   <link href="style/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="style/icofont/icofont.min.css" rel="stylesheet"/>
@@ -26,16 +99,16 @@
   <link href="style/owl.carousel.min.css" rel="stylesheet"/>
   <link href="style/boxicons/css/boxicons.min.css" rel="stylesheet"/>
   <link href="style/venobox/venobox.css" rel="stylesheet"/>
+
   <!-- Template Main CSS File -->
   <link href="css/style.css" rel="stylesheet"/>
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-169007209-3">
-  </script>
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-169007209-3"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'UA-169007209-3');
   </script>
   <!-- =======================================================
@@ -44,7 +117,7 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  </head>
+</head>
 
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -163,6 +236,9 @@
             Email:
           </strong>
           amrutha.amara1998@gmail.com
+          </li>
+          <li>
+            <p style="color: #343a40"> count : <span id="clickCountDisplay"></span></p>
           </li>
         </ul>
         </div>
