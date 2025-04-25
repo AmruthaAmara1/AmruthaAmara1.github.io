@@ -1,0 +1,1104 @@
+<html lang="en-US">
+<head>
+  <!-- Firebase SDKs -->
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+
+  <script type="module">
+    // Import necessary Firebase services
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+  
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyAe9ZFEec910igoPUi64r0Vgj-wo3vSLvU",
+      authDomain: "portfolio-access-count.firebaseapp.com",
+      projectId: "portfolio-access-count",
+      storageBucket: "portfolio-access-count.firebasestorage.app",
+      messagingSenderId: "991543477897",
+      appId: "1:991543477897:web:757bc8e4343eda96ffa858",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+  
+    // Reference to the Firestore document
+    const clickCountRef = doc(db, "accessCount", "clickCount");
+  
+    // Function to increment the click count on page load
+    async function incrementPageVisitCount() {
+      try {
+        const docSnap = await getDoc(clickCountRef);
+        if (docSnap.exists()) {
+          // Get the current count from Firestore
+          let currentCount = docSnap.data().count;
+  
+          // Increment the count by 1
+          currentCount++;
+  
+          // Update the Firestore document with the new count
+          await updateDoc(clickCountRef, { count: currentCount });
+        } else {
+          // If the document doesn't exist, create it with count = 1
+          await setDoc(clickCountRef, { count: 1 });
+        }
+        // Display the updated count
+        displayClickCount();
+      } catch (error) {
+        console.error("Error updating document: ", error);
+      }
+    }
+  
+    // Function to display the click count
+    async function displayClickCount() {
+      try {
+        const docSnap = await getDoc(clickCountRef);
+        if (docSnap.exists()) {
+          const count = docSnap.data().count;
+          // Update the displayed click count on the page
+          document.getElementById("clickCountDisplay").innerText = count;
+        }
+      } catch (error) {
+        console.error("Error getting document: ", error);
+      }
+    }
+  
+    // Call incrementPageVisitCount when the page is loaded
+    window.onload = () => {
+      incrementPageVisitCount();
+    };
+  </script>  
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5BB8W2X');
+  </script>
+  <!-- End Google Tag Manager -->
+
+  <link href="/favicon.png" rel="icon" type="image/png"/>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+    Personal Portfolio
+  </title>
+  <meta content="" name="description"/>
+  <meta content="" name="keywords"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"/>
+
+  <!-- Vendor CSS Files -->
+  <link href="style/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="style/icofont/icofont.min.css" rel="stylesheet"/>
+  <link href="style/remixicon/remixicon.css" rel="stylesheet"/>
+  <link href="style/owl.carousel.min.css" rel="stylesheet"/>
+  <link href="style/boxicons/css/boxicons.min.css" rel="stylesheet"/>
+  <link href="style/venobox/venobox.css" rel="stylesheet"/>
+  <link href="css/style.css" rel="stylesheet"/>
+
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-169007209-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-169007209-3');
+  </script>
+</head>
+
+<body>
+  <noscript>
+    <iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-5BB8W2X" style="display:none;visibility:hidden" width="0">
+    </iframe>
+  </noscript>
+
+  <header class="header-tops" id="header">
+    <div class="container">
+    <h1>
+      <a href="index.html">
+      Amrutha Amara
+      </a>
+    </h1>
+    <nav class="nav-menu d-none d-lg-block">
+      <ul>
+      <li>
+        <a href="#about">
+        <span>
+          About
+        </span>
+        </a>
+      </li>
+      <li>
+        <a href="#education">
+        <span>
+          Education
+        </span>
+        </a>
+      </li>
+      <li>
+        <a href="#experience">
+        <span>
+          Experience
+        </span>
+        </a>
+      </li>
+      <li>
+        <a href="#projects">
+        <span>
+          Projects
+        </span>
+        </a>
+      </li>
+      <li>
+        <a href="#certification">
+        <span>
+          Certifications
+        </span>
+        </a>
+      </li>
+      <li>
+        <a href="#skills">
+        <span>
+          Skills
+        </span>
+        </a>
+      </li>
+      <li>
+        <a href="#awards">
+        <span>
+          Awards
+        </span>
+        </a>
+      </li>
+      </ul>
+    </nav>
+    <!-- .nav-menu -->
+    <div class="social-links">
+      <a class="linkedin" href="https://www.linkedin.com/in/amrutha-amara" target="_blank">
+      <i class="bx bxl-linkedin">
+      </i>
+      </a>
+      <a class="github" href="https://github.com/AmruthaAmara1" target="_blank">
+      <i class="bx bxl-github">
+      </i>
+      </a>
+      <a class="google" href="mailto:amrutha.amara1998@gmail.com" target="_blank">
+      <i class="bx bxl-google">
+      </i>
+      </a>
+      <!--<a href="https://medium.com/" target="_blank" class="medium"><i class="bx bxl-medium"></i></a> -->
+    </div>
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <!-- ======= About Section ======= -->
+  <section class="about" id="about">
+    <!-- ======= About Me ======= -->
+    <div class="about-me container">
+    <div class="row">
+      <div class="col-lg-4" data-aos="fade-right">
+      <img alt="Profile picture of Amrutha" class="img-fluid" src="images/Amrutha.jpg"/>
+      </div>
+      <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left" style="color: #fff;">
+        <p>
+          👋 Hello! I'm Amrutha, a software engineer and full-stack developer with over 3 years of experience. I specialize in Python, C#, JavaScript, and SQL, with a strong background in building applications using frameworks like ASP.NET and Node.js.
+      </p>
+      <p>
+          Currently, I'm pursuing Master’s in Information Technology at the University of Cincinnati, building on my foundation in Computer Science. I'm a certified Cloud Engineer with experience on AWS, and I enjoy using data, AI, and cloud technologies to create innovative solutions.
+      </p>
+      <p>
+          I’m always excited to connect, share insights, and collaborate on meaningful projects. Let’s build something impactful together!
+      </p>      
+      <div class="row">
+        <div class="col-lg-6">
+        <ul>
+          <li>
+          <i class="icofont-rounded-right">
+          </i>
+          <strong>
+            Email:
+          </strong>
+          amaraamrutha9@gmail.com
+          </li>
+          <li>
+            <p style="color: #343a40"> count : <span id="clickCountDisplay"></span></p>
+          </li>
+        </ul>
+        </div>
+        <div class="col-lg-6">
+        <ul>
+          <li>
+          <i class="icofont-rounded-right">
+          </i>
+          <strong>
+            Current City:
+          </strong>
+          Cincinnati, OH
+          </li>
+        </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- End About Section -->
+
+  <!-- ======= Education Section ======= -->
+  <section class="services" id="education">
+    <div class="container">
+    <div class="section-title">
+      <!-- <h2>Education</h2> -->
+    </div>
+    <div class="row">
+      <div class="col-lg-12" data-aos="fade-up">
+      <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
+        <h4 style="text-align:left;">
+        <a href="https://cech.uc.edu/schools/it/grad-programs/masters-information-technology.html" style="color:#007bff">
+          University of Cincinnati, OH, USA
+        </a>
+        <br/>
+        </h4>
+        <h5 class="text-left text-black">
+        Master of Science in Information Technology
+        </h5>
+        <p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+        Jan 2024 - Present
+        <em>
+        </em>
+        </p>
+        <p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+        <b>
+          GPA:
+        </b>
+        4.0 / 4.0
+        <em>
+        </em>
+        </p>
+        <p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+        <b>
+          Coursework:
+        </b>
+        Microsoft Azure, Google Cloud, Machine Learning, Cyber Security, Web Development, UI/UX design
+        </p>
+      </div>
+      </div>
+      <div class="col-lg-12" data-aos="fade-up">
+      <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
+        <h4 style="text-align:left;">
+        <a href="https://vignan.ac.in/csehome.php" style="color:#007bff">
+          Vignan's Foundation for Science, Technology &amp; Research, Andhra Pradesh, India
+        </a>
+        <br/>
+        </h4>
+        <h5 class="text-left text-black">
+        Bachelors of Technology in Computer Science &amp; Engineering
+        </h5>
+        <p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+        June 2015 - May 2020
+        <em>
+        </em>
+        </p>
+        <p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+        <b>
+          GPA:
+        </b>
+        9.9 / 10 (4.0 / 4.0)
+        <em>
+        </em>
+        </p>
+        <p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+        <b>
+          Coursework:
+        </b>
+        Data Structures, Design &amp; Analysis of Algorithms, Probability &amp; Statistics, Object Oriented Programming, Operating Systems, Database Management System, Data Mining, Computer Graphics, Artificial Intelligence, Pattern Recognition, Optimization Techniques, Computer Networks, Internet of Things
+        </p>
+      </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- End Education Section -->
+
+  <!-- Start Experience Section -->
+  <section class="services" id="experience">
+    <div class="container">
+      <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
+        <h4 style="text-align:left;">
+            <a href="https://www.uc.edu/" style="color:#007bff">
+                Graduate Teaching Assistant
+            </a>
+            <span style="float:right;color:#000;font-size: 14px;font-weight: 600;">Jan 2024 - Dec 2024</span>
+        </h4>
+        <h5 class="text-left text-black">
+            University of Cincinnati
+        </h5>
+        <ul class="text-left text-black">
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Assisted professors in teaching courses on Software Development, C#, ASP.NET, Web Development, and Web Game Development using Python, Node.js, and React.js.
+            </p></li>
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Led lab sessions where students built web applications and interactive games using C#, ASP.NET, Python, Node.js, and React.js.
+            </p></li>
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Helped students with technical challenges and explained course concepts during one-on-one tutoring sessions.
+            </p></li>
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Graded assignments and exams, providing feedback on code quality and project implementation.
+            </p></li>
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Created and demonstrated interactive projects for Web Game Development using Python, Node.js, and React.js.
+            </p></li>
+        </ul>
+      </div>       
+    
+      <!-- System Engineer -->
+      <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
+        <h4 style="text-align:left;">
+            <a href="https://www.tcs.com/" style="color:#007bff">
+                System Engineer | Full Stack Developer | Software Engineer
+            </a>
+            <span style="float:right;color:#000;font-size: 14px;font-weight: 600;">Apr 2021 – Dec 2023</span>
+        </h4>
+        <h5 class="text-left text-black">
+            Tata Consultancy Services, Hyderabad, India
+        </h5>
+        <ul class="text-left text-black">
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Managed updates related to credit card offers and payment URL redirection using HTML, CSS, and SQL, ensuring 100% payment processing accuracy.
+            </p></li>
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Engineered new APIs and batch jobs in C# for cashback rewards redemption and reversal, reducing transaction processing time by 35% while improving user experience and client satisfaction.
+            </p></li>
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Automated smart link generation with HTML, CSS, .NET, and SQL, which generated $2.34M in client benefits and improved operational efficiency.
+            </p></li>
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Developed and deployed APIs using Node.js and Express.js within an AWS Lambda environment, utilizing AWS services like DynamoDB and S3 for better data management and scalability.
+            </p></li>
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Managed code versions using Git, ensuring smooth integration of AWS services and deployment of APIs, which led to an 80% improvement in request handling performance.
+            </p></li>
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Implemented over 60 critical code fixes and resolved more than 90 defects in an ASP.NET web application, improving system stability by 22%.
+            </p></li>
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Conducted API testing using SoapUI and Postman, analyzed Splunk logs, and reduced error rates by 30%, improving the application's operational efficiency.
+            </p></li>
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Prepared design documents for API architecture, ensuring clear communication and structured implementation.
+            </p></li>
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Reviewed and provided feedback on code from peers to ensure adherence to best practices, improving code quality and maintainability.
+            </p></li>
+        </ul>
+    </div>
+    
+    <!-- Assistant System Engineer - Trainee -->
+    <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
+        <h4 style="text-align:left;">
+            <a href="https://www.tcs.com/" style="color:#007bff">
+                Assistant System Engineer Trainee | Full Stack Developer
+            </a>
+            <span style="float:right;color:#000;font-size: 14px;font-weight: 600;">Sep 2020 – Mar 2021</span>
+        </h4>
+        <h5 class="text-left text-black">
+            Tata Consultancy Services, Remote
+        </h5>
+        <ul class="text-left text-black">
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Designed standard email templates using HTML, CSS, .NET, and SQL, increasing digital communication efficiency by 60%.
+            </p></li>
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Developed Python scripts to extract and process 73,000 records from Google Cloud, improving data analysis and correction workflows.
+            </p></li>
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Optimized customer record correction using Python, reducing manual correction time by 95%.
+            </p></li>
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Applied 25+ code fixes in Python scripts, ensuring business requirements were met and the code was aligned with operational goals.
+            </p></li>
+            <li><p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+                Resolved 15+ incidents by modifying SQL queries, ensuring the web application functioned according to business requirements.
+            </p></li>
+        </ul>
+      </div>               
+    </div>  
+  </div>  
+  </section>
+  <!-- End Experience Section -->
+
+  <!-- Start Project Section -->
+  <section class="services" id="projects">
+    <div class="container">
+    <!-- <div class="section-title">
+        <h2>Projects</h2>
+      </div> -->
+    <div class="row">
+      <div class="col-lg-12" data-aos="fade-up">
+      <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
+        <h4 style="text-align:left;color:#007bff;">
+        Machine Learning - Fruit and Plant leaf disease prediction
+        <br/>
+        </h4>
+        <h6 class="text-left text-black">
+        Python, Flask, TensorFlow, Computer Vision
+        </h6>
+        <p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+        Jan 2020 - Apr 2020
+        <em>
+        </em>
+        </p>
+        <br/>
+        <p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+        Conceptualized and built a cutting-edge AI-powered diagnostic tool tailored for identifing leaf diseases like black spot, canker across various imaging modalities. Our system achieves an impressive 93% accuracy, automating the detection process.
+        <a href="" style="color:#007bff">
+        </a>
+        </p>
+      </div>
+      <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100">
+        <h4 style="text-align:left;color:#007bff;">
+        Full stack - Bibliotek
+        <br/>
+        </h4>
+        <h6 class="text-left text-black">
+        Java, JSP, MySQL, HTML, CSS, JavaScript
+        </h6>
+        <p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+        Jul 2018 - Sep 2018
+        <em>
+        </em>
+        </p>
+        <br/>
+        <p style="text-align:left;color:#000;font-size: 14px;font-weight: 600;">
+        Developed a web application for librarians to efficiently manage book inventory, track availability, and monitor due dates. This application also provides students with real-time access to book availability and their respective due dates.
+        <a href="" style="color:#007bff">
+        </a>
+        </p>
+      </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- End Project Section -->
+
+  <!-- Start Certification Section -->
+  <section class="certification" id="certification">
+    <div class="container">
+    <!-- <div class="section-title">
+      <h2>Certification</h2>
+    </div> -->
+    <div class="portfolio">
+      <div class="container">
+      <!-- <div class="section-title">
+          <h2>Certifications</h2>
+        </div> -->
+      <div class="row portfolio-container" style="position: relative; height: 437.75px;">
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app" style="position: absolute; left: 370px; top: 0px;">
+        <div class="portfolio-wrap">
+          <img alt="AWS Certified Cloud Practitioner" class="img-fluid" src="images/certifications/ACP.png"/>
+          <div class="portfolio-info">
+          <h4>
+            AWS Certified Cloud Practitioner
+          </h4>
+          <div class="portfolio-links">
+            <a href="https://cp.certmetrics.com/amazon/en/public/verify/credential/GF859PKC424Q1F5E" target="_blank" title="Certificate">
+            <i class="bx bx-link">
+            </i>
+            </a>
+          </div>
+          </div>
+        </div>
+        </div>
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app" style="position: absolute; left: 0px; top: 0px;">
+        <div class="portfolio-wrap">
+          <img alt="Google Cloud Certified Associate Cloud Engineer" class="img-fluid" src="images/certifications/GCP.png"/>
+          <div class="portfolio-info">
+          <h4>
+            Google Cloud Certified Associate Cloud Engineer
+          </h4>
+          <div class="portfolio-links">
+            <a href="https://google.accredible.com/6ac9e60f-e79e-4f2e-9152-7e8348933029" target="_blank" title="Certificate">
+            <i class="bx bx-link">
+            </i>
+            </a>
+          </div>
+          </div>
+        </div>
+        </div>
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app" style="position: absolute; left: 740px; top: 0px;">
+        <div class="portfolio-wrap">
+          <img alt="IBM Data Science Specialization" class="img-fluid" src="images/certifications/IBMDS.png"/>
+          <div class="portfolio-info">
+          <h4>
+            IBM Data Science Specialization
+          </h4>
+          <div class="portfolio-links">
+            <a href="https://coursera.org/share/2ef6e4682504cebb8f541c3fc921b70a" target="_blank" title="Certificate">
+            <i class="bx bx-link">
+            </i>
+            </a>
+          </div>
+          </div>
+        </div>
+        </div>
+        <div class="col-lg-4 col-md-6 portfolio-item filter-project" style="position: absolute; left: 0px; top: 218.875px;">
+        <div class="portfolio-wrap">
+          <img alt="" class="img-fluid" src="images/certifications/ML.png"/>
+          <div class="portfolio-info">
+          <h4>
+            Stanford University - Machine Learning
+          </h4>
+          <div class="portfolio-links">
+            <a href="https://coursera.org/share/2a66e5868f3894cbf26983824338259f" target="_blank" title="Certificate">
+            <i class="bx bx-link">
+            </i>
+            </a>
+          </div>
+          </div>
+        </div>
+        </div>
+        <div class="col-lg-4 col-md-6 portfolio-item filter-project" style="position: absolute; left: 370px; top: 218.875px;">
+        <div class="portfolio-wrap">
+          <img alt="" class="img-fluid" src="images/certifications/NN_DL.png"/>
+          <div class="portfolio-info">
+          <h4>
+            Neural Networks and Deep Learning
+          </h4>
+          <div class="portfolio-links">
+            <a href="https://coursera.org/share/20b9cc36e92916f2ef7a11f2d44307eb" target="_blank" title="Certificate">
+            <i class="bx bx-link">
+            </i>
+            </a>
+          </div>
+          </div>
+        </div>
+        </div>
+        <div class="col-lg-4 col-md-6 portfolio-item filter-project" style="position: absolute; left: 740px; top: 218.875px;">
+        <div class="portfolio-wrap">
+          <img alt="" class="img-fluid" src="images/certifications/IoT.png"/>
+          <div class="portfolio-info">
+          <h4>
+            University of California - Internet of Things
+          </h4>
+          <div class="portfolio-links">
+            <a href="https://coursera.org/share/b14b7838c2c14f03bddd9207f6323025" target="_blank" title="Certificate">
+            <i class="bx bx-link">
+            </i>
+            </a>
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- End Certification Section -->
+
+  <!-- Start Skills Section -->
+  <section class="services" id="skills">
+    <div class="container">
+    <!-- <div class="section-title">
+        <h2>Skills</h2>
+      </div> -->
+    <div class="row">
+      <div class="col-lg-12" data-aos="fade-up">
+      <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="fade-up" data-aos-delay="100" style="background:#fff">
+        <h4 style="text-align:left;color:#007bff">
+        Programming Languages
+        </h4>
+        <p style="text-align:left;">
+        Python, Java, C#
+        <br/>
+        <img alt="vectorlogo.zone" height="75" src="https://www.vectorlogo.zone/logos/python/python-horizontal.svg" width="175"/>
+        <img alt="vectorlogo.zone" height="75" src="https://www.vectorlogo.zone/logos/java/java-horizontal.svg" width="145"/>
+        <img alt="vectorlogo.zone" height="75" src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Logo_C_sharp.svg" width="170"/>
+        </p>
+      </div>
+      <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="lefade-up" data-aos-delay="100" style="background:#fff">
+        <h4 style="text-align:left;color:#007bff">
+        AI &amp; Machine Learning
+        </h4>
+        <p style="text-align:left;">
+        PyTorch, TensorFlow, Keras, Scikit-learn, OpenCV, NLTK, SpaCy, NumPy, Pandas, Matplotlib, Flask
+        <br/>
+        <img alt="PyTorch" src="https://www.vectorlogo.zone/logos/pytorch/pytorch-ar21.svg"/>
+        <img alt="TensorFlow" src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-ar21.svg"/>
+        <img alt="Scikit-learn" height="70" src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" width="90"/>
+        <img alt="OpenCV" src="https://www.vectorlogo.zone/logos/opencv/opencv-ar21.svg"/>
+        <img alt="NumPy" src="https://www.vectorlogo.zone/logos/numpy/numpy-ar21.svg"/>
+        <img alt="Pandas" height="70" src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Pandas_logo.svg" width="90"/>
+        <img alt="Flask" src="https://www.vectorlogo.zone/logos/palletsprojects_flask/palletsprojects_flask-ar21~v2.svg"/>
+        </p>
+      </div>
+      <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="lefade-up" data-aos-delay="100" style="background:#fff">
+        <h4 style="text-align:left;color:#007bff">
+        Web Technologies
+        </h4>
+        <p style="text-align:left;">
+        HTML, CSS, Java Script, MySQL, .Net, Node.js, Jira, Agile, SDLC, Microservices, REST APIs
+        <br/>
+        <img alt="HTML" src="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-ar21.svg"/>
+        <img alt="CSS" height="60" src="https://www.vectorlogo.zone/logos/w3_css/w3_css-official.svg" width="145"/>
+        <img alt="JavaScript" src="https://www.vectorlogo.zone/logos/javascript/javascript-ar21.svg"/>
+        <img alt="MySQL" height="70" src="https://www.vectorlogo.zone/logos/mysql/mysql-horizontal.svg" width="130"/>
+        <img alt=".NET" height="70" src="https://www.vectorlogo.zone/logos/dotnet/dotnet-ar21.svg" width="130"/>
+        <img alt="NodeJS" src="https://www.vectorlogo.zone/logos/nodejs/nodejs-horizontal.svg"/>
+        <img alt="Jira" height="70" src="https://www.vectorlogo.zone/logos/atlassian_jira/atlassian_jira-ar21.svg" width="130"/>
+        </p>
+      </div>
+      <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="lefade-up" data-aos-delay="100" style="background:#fff">
+        <h4 style="text-align:left;color:#007bff">
+        Cloud
+        </h4>
+        <p style="text-align:left;">
+        AWS - Lambda, DynamoDb, CloudWatch, Simple Storage Service (S3)
+        <br/>
+        <img alt="vectorlogo.zone" src="https://www.vectorlogo.zone/logos/amazon_awslambda/amazon_awslambda-ar21.svg"/>
+        <img alt="vectorlogo.zone" src="https://www.vectorlogo.zone/logos/amazon_cloudwatch/amazon_cloudwatch-ar21.svg"/>
+        </p>
+      </div>
+      <div class="col-md-12 mt-4 mt-md-0 icon-box" data-aos="lefade-up" data-aos-delay="100" style="background:#fff">
+        <h4 style="text-align:left;color:#007bff">
+        Developer Tools
+        </h4>
+        <p style="text-align:left;">
+        Visual Studio Code, Git, Jupyter Notebook, Postman, SoapUI, PyCharm
+        <br/>
+        <img alt="vectorlogo.zone" height="70" src="https://www.vectorlogo.zone/logos/visualstudio_code/visualstudio_code-ar21.svg" width="130"/>
+        <img alt="vectorlogo.zone" src="https://www.vectorlogo.zone/logos/git-scm/git-scm-ar21.svg"/>
+        <img alt="vectorlogo.zone" src="https://www.vectorlogo.zone/logos/jupyter/jupyter-ar21.svg"/>
+        <img alt="vectorlogo.zone" src="https://www.vectorlogo.zone/logos/getpostman/getpostman-ar21.svg"/>
+        <img alt="vectorlogo.zone" height="70" src="images/skills/soapUI.webp" width="120"/>
+        <img alt="vectorlogo.zone" height="70" src="images/skills/pycharm.avif" width="120"/>
+        </p>
+      </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- End Skills Section -->
+
+  <!-- Start Awards Section -->
+  <section class="services" id="awards">
+    <div class="container">
+    <!-- <div class="section-title">
+        <h2>Awards</h2>
+      </div> -->
+    <ul class="list" style="color: #fff;">
+      <h3>
+      2024
+      </h3>
+      <li>
+      <h6>
+        Recipient of a 100% scholarship for master's studies at University of Cincinnati
+      </h6>
+      </li>
+      <h3>
+      2023
+      </h3>
+      <li>
+      <h6>
+        Award |
+        <i>
+        Service and Commitment
+        </i>
+        Award for successfully completing 3 years of service at Tata Consultancy Services -
+        <i>
+        14 Sep
+        </i>
+        |
+        <a href="awards/Service_&amp;_Commitment__Award_14 Sep 2023.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        <a href="awards/pics/Service &amp; Commitment Award_14 Sep 2023.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li>
+      <li>
+      <h6>
+        Award |
+        <i>
+        On the Spot (Team)
+        </i>
+        Award from Project Manager for successful delivery of complex project that includes ASP.NET, NodeJS in AWS , without any post production issues which also laid foundation for all the upcoming API's on cloud -
+        <i>
+        8 Sep
+        </i>
+        |
+        <a href="awards/On_the_Spot_(Team)_Award_8 Sep 2023.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/On the Spot (Team) Award_8 Sep 2023.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li>
+      <!-- <li>
+      <h6>
+        Award |
+        <i>
+        Elevate Wings
+        </i>
+        Award for clearing wings1 assessment -
+        <i>
+        29 Aug
+        </i>
+        |
+        <a href="awards/Elevate_Wings_Award_29 Aug 2023.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/Elevate Wings Award_29 Aug 2023.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li> -->
+      <li>
+      <h6>
+        Award |
+        <i>
+        Best Audior
+        </i>
+        Award  - from the Compliance & Security Lead for providing value-adding suggestions to the auditee - 
+        <i>
+        31 Jul
+        </i>
+        |
+        <a href="awards/Best_Auditor_Award_31 Jul 2023.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/Best Auditor Award_31 Jul 2023.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li>
+      <li>
+      <h6>
+        Award |
+        <i>
+        Special Initiative
+        </i>
+        Award  - for outstanding performance in the Mindworks platform as part of the Digital Masters Event, demonstrating expertise in Java Full Stack Development -
+        <i>
+        26 Jul
+        </i>
+        |
+        <a href="awards/Special_Initiative_Award_26 Jul 2023.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/Special Initiative Award_26 Jul 2023.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li>
+      <!-- <li>
+      <h6>
+        Award |
+        <i>
+        Special Initiative
+        </i>
+        Award  -
+        <i>
+        13 Jul
+        </i>
+        |
+        <a href="awards\Special_Initiative_Award_13 Jul 2023.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/Special Initiative Award_13 Jul 2023.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li> -->
+      <li>
+      <h6>
+        Award |
+        <i>
+        Contextual Master
+        </i>
+        Award  - for proposing and successfully delivering an innovative idea to the client as part of the Contextual Masters initiative - 
+        <i>
+        10 Jul
+        </i>
+        |
+        <a href="awards/Contextual_Master_Award_10 Jul 2023.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/Contextual Master Award_10 Jul 2023.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li>
+      <li>
+      <h6>
+        Award |
+        <i>
+        Best Team
+        </i>
+        Award  - for dedication and proactiveness in successfully delivering multiple minor and major projects as part of a team, meeting stringent timelines and achieving the desired outcomes - 
+        <i>
+        5 Jul
+        </i>
+        |
+        <a href="awards/Best_Team_Award_5 Jul 2023.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/Best Team Award_5 Jul 2023.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li>
+      <!-- <li>
+      <h6>
+        Award |
+        <i>
+        Special Initiative
+        </i>
+        Award  -
+        <i>
+        3 Mar
+        </i>
+        |
+        <a href="awards/Special_Initiative_Award_3 Mar 2023.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/Special Initiative Award_3 Mar 2023.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li> -->
+      <li>
+      <h6>
+        Award |
+        <i>
+        Special Initiative
+        </i>
+        Award  - for contributing innovative ideas and solutions to the iDream initiative, driving enhanced customer satisfaction - 
+        <i>
+        16 Feb
+        </i>
+        |
+        <a href="awards/Special_Initiative_Award_16 Feb 2023.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/Special Initiative Award_16 Feb 2023.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li>
+      <li>
+      <h6>
+        Award |
+        <i>
+        Best Team
+        </i>
+        Award  - for exceptional performance as Security Deployment Lead during the ISO Audit 2023, ensuring flawless completion through hard work and dedication - 
+        <i>
+        15 Feb
+        </i>
+        |
+        <a href="awards/Best_Team_Award_15 Feb 2023.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/Best Team Award_15 Feb 2023.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li>
+      <h3>
+      2022
+      </h3>
+      <!-- <li>
+      <h6>
+        Award |
+        <i>
+        Special Initiative
+        </i>
+        Award  -
+        <i>
+        7 Dec
+        </i>
+        |
+        <a href="awards/Special_Initiative_Award_07 Dec 2022.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/Special Initiative Award_7 Dec 2022.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li> -->
+      <!-- <li>
+      <h6>
+        Award |
+        <i>
+        Special Initiative
+        </i>
+        Award  -
+        <i>
+        8 Apr
+        </i>
+        |
+        <a href="awards/Special_Initiative_Award_08 Apr 2022.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/Special Intiative Award_8 Apr 2022.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li> -->
+      <li>
+      <h6>
+        Award |
+        <i>
+        On the Spot
+        </i>
+        Award  - for outstanding contributions to the audit process for the BFSI unit, adding significant value and ensuring excellence in audit delivery - 
+        <i>
+        5 Apr
+        </i>
+        |
+        <a href="awards/On_The_Spot_Award_05 Apr 2022.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/On the Spot Award_5 Apr 2022.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li>
+      <!-- <li>
+      <h6>
+        Award |
+        <i>
+        Special Initiative
+        </i>
+        Award  -
+        <i>
+        24 Jan
+        </i>
+        |
+        <a href="awards/Special_Initiative_Award_24 Jan 2022.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/Special Initiative Award_24 Jan 2022.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li> -->
+      <h3>
+      2021
+      </h3>
+      <li>
+      <h6>
+        Award |
+        <i>
+        On the Spot
+        </i>
+        Award  -  for successfully delivering the Email Templates project on time without defects, earning client appreciation. Commended for enthusiasm, quick learning, and consistently supporting team members with technical and functional knowledge - 
+        <i>
+        1 Nov
+        </i>
+        |
+        <a href="awards/On_The_Spot_Award_01 Nov 2021.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/On the Spot Award_1 Nov 2021.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li>
+      <!-- <li>
+      <h6>
+        Award |
+        <i>
+        On the Spot
+        </i>
+        Award  -
+        <i>
+        8 Apr
+        </i>
+        |
+        <a href="awards/On_The_Spot_Award_08 Apr 2021.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/On the Spot Award_8 Apr 2021.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li> -->
+      <!-- <li>
+      <h6>
+        Award |
+        <i>
+        On the Spot
+        </i>
+        Award  -
+        <i>
+        5 Jan
+        </i>
+        |
+        <a href="awards/On_The_Spot_Award_05 Jan 2021.pdf" style="color:#007bff" target="_blank">
+        View Award
+        </a>
+        |
+        <a href="awards/pics/On the Spot Award_5 Jan 2021.png" style="color:#007bff" target="_blank">
+        View Message
+        </a>
+      </h6>
+      </li> -->
+    </ul>
+    </div>
+  </section>
+  --&gt;
+  <!-- End Awards Section -->
+
+  <!-- Vendor JS Files -->
+  <script src="style/jquery/jquery.min.js">
+  </script>
+  <script src="style/bootstrap/js/bootstrap.bundle.min.js">
+  </script>
+  <script src="style/jquery.easing/jquery.easing.min.js">
+  </script>
+  <script src="style/php-email-form/validate.js">
+  </script>
+  <script src="style/waypoints/jquery.waypoints.min.js">
+  </script>
+  <script src="style/counterup/counterup.min.js">
+  </script>
+  <script src="style/owl.carousel/owl.carousel.min.js">
+  </script>
+  <script src="style/isotope-layout/isotope.pkgd.min.js">
+  </script>
+  <script src="style/venobox/venobox.min.js">
+  </script>
+  <script src="style/typed.js/typed.min.js">
+  </script>
+  <!-- Template Main JS File -->
+  <script src="js/script.js">
+  </script>
+  </body>
+</html>
